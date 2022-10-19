@@ -2,7 +2,10 @@ import React from 'react'
 
 const ProductScreen = () => {
   return (
-    <div>Product</div>
+    <div>
+        Product 
+        <h2>Remove this</h2>
+    </div>
   )
 }
 
