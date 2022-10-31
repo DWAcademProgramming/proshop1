@@ -4,7 +4,14 @@ import Product from '../models/productModel.js'
 // @route GET /api/products
 // @access Public
 const getProducts = async (req, res) =>{
-    const products = await Product.find({})
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+    const products = await Product.find({ ...keyword })
 
     res.json(products)
 }
@@ -89,4 +96,47 @@ const updateProduct = async (res, res) =>{
     }
 }
 
-export { getProducts, getProductById, deleteProduct, createProduct, updateProduct }
+// @desc Create new review
+// @route Post /api/products/:id/review
+// @access Private
+const createProductReview = async (res, res) =>{
+    const {
+       rating,
+       comment
+    } = req.body
+
+    const product = await product.save()
+
+    if(product){
+        const alreadyReviewed = products.reviews.find(r => r.user.toString() === req.user._id.toString())
+
+        if(alreadyReviewed){
+            res.status(400)
+            throw new Error('Product already reviewed')
+        }
+
+        await product.save()
+        const review ={
+            name: req.user.name, 
+            rating: Number(rating),
+            comment, 
+            user: req.user._id
+        }
+
+        products.reviews.push(review)
+
+        product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0)/product.reviews.length 
+    }else{
+        res.status(404)
+        throw new Error('Product not found')
+    }
+}
+
+export { 
+    getProducts, 
+    getProductById, 
+    deleteProduct, 
+    createProduct, 
+    updateProduct,
+    createProductReview 
+}
