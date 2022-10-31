@@ -185,7 +185,7 @@ export const register = (name, email, password) => async (dispatch) => {
       })
     }
   }
-  /*
+
 
   export const listUsers = () => async (dispatch, getState) => {
   try {
@@ -296,4 +296,3 @@ export const updateUser = (user) => async (dispatch, getState) => {
     })
   }
 }
-*/
