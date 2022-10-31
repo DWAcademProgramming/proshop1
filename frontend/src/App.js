@@ -3,7 +3,7 @@ import "./index.css"
 import React from "react"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { Container, Row, Col } from "react-bootstrap"
+import { Container} from "react-bootstrap"
 import HomeScreen from "./screens/HomeScreen"
 import ProductScreen from "./screens/ProductScreen"
 import CartScreen from "./screens/CartScreen"
@@ -40,11 +40,27 @@ const App = () => {
             <Route path="/cart/" element={<CartScreen />} />
             <Route path="/admin/userlist" element={<UserListScreen />} />
             <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
+            <Route
+              path='/admin/productlist'
+              component={ProductListScreen}
+              exact
+            />
+            <Route
+              path='/admin/productlist/:pageNumber'
+              component={ProductListScreen}
+              exact
+            />
             <Route path="/admin/productlist" element={<ProductListScreen />} />
             <Route path="/admin/product/:id/edit" element={<ProductEditScreen />} />
             <Route path="/admin/orderlist" element={<OrderListScreen />} />
             <Route path="/search/:keyword" element={<HomeScreen />} />
-            <Route path="/" element={<HomeScreen />} />
+            <Route path="/:pageNumber" element={<HomeScreen />} />
+            <Route
+              path='/search/:keyword/page/:pageNumber'
+              component={HomeScreen}
+              exact
+            />
+            <Route path="/" element={<HomeScreen />} exact/>
           </Routes>
         </Container>
       </main>
