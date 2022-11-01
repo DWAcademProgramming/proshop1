@@ -5,7 +5,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import SearchBox from './SearchBox'
-import { logout } from '../actions/userAction'
+import { logout } from '../actions/userActions'
  
 function Header() {
   const dispatch = useDispatch()
